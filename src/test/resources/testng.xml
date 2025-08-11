@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="PlayVoxIntegrationTestSuite" verbose="1" parallel="classes" thread-count="1">
+    
+    <parameter name="browser" value="chrome"/>
+    
+    <test name="PlayVoxIntegrationTests" preserve-order="true">
+        <classes>
+            <!-- SC001: Authorize without required fields -->
+            <class name="com.playvox.automation.tests.SC001_AuthorizeWithoutRequiredFieldsTest"/>
+            
+            <!-- SC002: Partial field input validation -->
+            <class name="com.playvox.automation.tests.SC002_PartialFieldInputTest"/>
+            
+            <!-- SC003: Partial form completion validation -->
+            <class name="com.playvox.automation.tests.SC003_PartialFormCompletionTest"/>
+            
+            <!-- SC004: Valid form submission -->
+            <class name="com.playvox.automation.tests.SC004_ValidFormSubmissionTest"/>
+            
+            <!-- SC005: Cancel button functionality -->
+            <class name="com.playvox.automation.tests.SC005_CancelButtonFunctionalityTest"/>
+            
+            <!-- SC006: Save after authorization -->
+            <class name="com.playvox.automation.tests.SC006_SaveAfterAuthorizationTest"/>
+            
+            <!-- SC007: Save without authorization -->
+            <class name="com.playvox.automation.tests.SC007_SaveWithoutAuthorizationTest"/>
+            
+            <!-- SC008: UI alignment inspection -->
+            <class name="com.playvox.automation.tests.SC008_UIAlignmentInspectionTest"/>
+        </classes>
+    </test>
+    
+    <!-- Alternative test configuration for different browsers -->
+    <test name="FirefoxIntegrationTests" enabled="false">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.playvox.automation.tests.SC004_ValidFormSubmissionTest"/>
+            <class name="com.playvox.automation.tests.SC008_UIAlignmentInspectionTest"/>
+        </classes>
+    </test>
+    
+    <!-- Smoke test suite with critical test cases -->
+    <test name="SmokeTests" enabled="false">
+        <classes>
+            <class name="com.playvox.automation.tests.SC001_AuthorizeWithoutRequiredFieldsTest">
+                <methods>
+                    <include name="testAuthorizeWithoutRequiredFields"/>
+                </methods>
+            </class>
+            <class name="com.playvox.automation.tests.SC004_ValidFormSubmissionTest">
+                <methods>
+                    <include name="testValidFormSubmissionSuccess"/>
+                </methods>
+            </class>
+            <class name="com.playvox.automation.tests.SC005_CancelButtonFunctionalityTest">
+                <methods>
+                    <include name="testCancelButtonClearsAllFields"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+</suite>
