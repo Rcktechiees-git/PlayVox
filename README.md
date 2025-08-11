@@ -256,6 +256,50 @@ public void testMethodName() {
 }
 ```
 
+## 🔄 Continuous Integration
+
+This project includes a GitHub Actions CI/CD pipeline that automatically builds and tests the code on every push and pull request.
+
+### CI Workflow Features
+
+The CI workflow (`.github/workflows/ci.yml`) includes:
+
+- **Java 11 Setup**: Automatically configures the correct Java version
+- **Chrome Browser**: Sets up Chrome for Selenium testing
+- **Maven Caching**: Caches dependencies for faster builds
+- **Automated Testing**: Runs all TestNG test suites
+- **Test Reporting**: Generates detailed test reports with JUnit XML format
+- **Artifact Upload**: Saves test results and reports for review
+
+### Workflow Triggers
+
+The CI runs on:
+- Push to `main` or `master` branches
+- Pull requests targeting `main` or `master` branches
+
+### Test Reports
+
+After each CI run, you can view:
+- **GitHub Actions Summary**: Overall pass/fail status
+- **Test Reporter**: Detailed test results with failure details
+- **Artifacts**: Downloadable test reports and surefire outputs
+
+### Running Tests Locally
+
+To run tests the same way as CI:
+
+```bash
+# Clean build and test
+mvn clean compile test
+
+# Run with headless Chrome (CI mode)
+HEADLESS=true mvn test
+```
+
+### CI Status
+
+Check the CI status badge and recent workflow runs in the "Actions" tab of this repository.
+
 ## 🤝 Contributing
 
 1. Follow the existing code structure and naming conventions
